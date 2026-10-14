@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  version: "0.8.0"
+
+package:
+  name: innerscope
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/i/innerscope/innerscope-${{ version }}.tar.gz
+  sha256: e5d75cedbe945ed7049ed03ae649167dd90f41081a8bf86279c65efbb08b65e7
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools >=77
+    - setuptools-git-versioning
+    - pip
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - innerscope
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  # innerscope reads and rewrites bytecode, which changes with every Python,
+  # so run the full suite on both the oldest and the newest Python.
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+        - pytest >=7
+    script:
+      - pytest -v --pyargs innerscope
+  - requirements:
+      run:
+        - python
+        - pytest >=7
+    script:
+      - pytest -v --pyargs innerscope
+
+about:
+  homepage: https://github.com/eriknw/innerscope
+  repository: https://github.com/eriknw/innerscope
+  summary: Expose the inner scope of functions
+  description: |
+    Innerscope exposes the inner scope of functions and offers primitives suitable for creating pipelines.
+    It explores a design space around functions, dictionaries, and classes.
+  license: BSD-3-Clause
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - eriknw
