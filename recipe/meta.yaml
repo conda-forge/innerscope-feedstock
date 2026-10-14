@@ -1,13 +1,13 @@
 {% set name = "innerscope" %}
-{% set version = "0.7.0" %}
+{% set version = "0.8.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/innerscope-{{ version }}.tar.gz
-  sha256: f5423410867360a1d00f6533c55a4af0a2e050d43b424394e51c59b28db2ef4d
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/innerscope-{{ version }}.tar.gz
+  sha256: e5d75cedbe945ed7049ed03ae649167dd90f41081a8bf86279c65efbb08b65e7
 
 build:
   noarch: python
