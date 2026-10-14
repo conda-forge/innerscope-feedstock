@@ -14,7 +14,6 @@ Development: https://github.com/eriknw/innerscope
 Innerscope exposes the inner scope of functions and offers primitives suitable for creating pipelines.
 It explores a design space around functions, dictionaries, and classes.
 
-
 Current build status
 ====================
 
